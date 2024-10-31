@@ -1,0 +1,57 @@
+<form (ngSubmit)="onSubmit()" class="form-label" #productForm="ngForm">
+  <div>
+    <input
+      class="form-control my-2"
+      type="text"
+      name="name"
+      id=""
+      placeholder="Name"
+      [(ngModel)]="product.name"
+      #name="ngModel"
+      required
+    />
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+      <div>Nombre es requerido</div>
+    </div>
+  </div>
+  <div>
+    <input
+      class="form-control my-2"
+      type="text"
+      name="description"
+      id=""
+      placeholder="Description"
+      [(ngModel)]="product.description"
+      #description="ngModel"
+      required
+    />
+    <div
+      *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger"
+    >
+      <div>Description es requerida</div>
+    </div>
+  </div>
+  <div>
+    <input
+      class="form-control my-2"
+      type="text"
+      name="price"
+      id=""
+      placeholder="Price"
+      [(ngModel)]="product.price"
+      #price="ngModel"
+      required min="1"
+    />
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class=" text-danger">
+      <div>El precio es requerido</div>
+    </div>
+  </div>
+  <div>
+    <button [disabled]="!productForm.form.valid" class="btn btn-primary ">
+      {{ product.id > 0 ? "Actualizar" : "Crear" }}
+    </button>
+    <button type="button" class="btn btn-success my-2 mx-2" (click)="onClean()">
+      Limpiar
+    </button>
+  </div>
+</form>
